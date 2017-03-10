@@ -23,7 +23,7 @@ services:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash/pipeline:/usr/share/logstash/pipeline
     ports:
-      - "5000:5000"
+      - "12201:12201/udp"
     networks:
       - docker_elk
     depends_on:
@@ -38,6 +38,19 @@ services:
       - docker_elk
     depends_on:
       - elasticsearch
+  nginx:
+    build: nginx/
+    volumes:
+      - ./nginx/nginx.conf/:/etc/nginx/nginx.conf
+      - ./nginx/certs/:/certs:ro
+      - ./nginx/.htpasswd:/etc/nginx/.htpasswd
+    ports:
+      - "443:443"
+      - "80:80"
+    networks:
+      - docker_elk
+    depends_on:
+      - kibana
 
 networks:
   docker_elk:

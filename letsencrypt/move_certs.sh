@@ -1,0 +1,2 @@
+mv /root/docker-elk/letsencrypt/certs/live/kibana.constantadev.tech/privkey.pem /root/docker-elk/nginx/certs/key.pem
+mv /root/docker-elk/letsencrypt/certs/live/kibana.constantadev.tech/fullchain.pem /root/docker-elk/nginx/certs/cert.pem
