@@ -41,20 +41,20 @@ services:
     depends_on:
       - elasticsearch
     environment:
-      NODE_OPTIONS: "--max-old-space-size=250"
-  # nginx:
-  #   build: nginx/
-  #   volumes:
-  #     - ./nginx/nginx.conf/:/etc/nginx/nginx.conf
-  #     - ./nginx/certs/:/certs:ro
-  #     - ./nginx/.htpasswd:/etc/nginx/.htpasswd
-  #   ports:
-  #     - "443:443"
-  #     - "80:80"
-  #   networks:
-  #     - docker_elk
-  #   depends_on:
-  #     - kibana
+      NODE_OPTIONS: "--max-old-space-size=500"
+  nginx:
+    build: nginx/
+    volumes:
+      - ./nginx/nginx.conf/:/etc/nginx/nginx.conf
+      - ./nginx/certs/:/certs:ro
+      - ./nginx/.htpasswd:/etc/nginx/.htpasswd
+    ports:
+      - "443:443"
+      - "80:80"
+    networks:
+      - docker_elk
+    depends_on:
+      - kibana
 
 networks:
   docker_elk:
