@@ -40,6 +40,8 @@ services:
       - docker_elk
     depends_on:
       - elasticsearch
+    environment:
+      NODE_OPTIONS: "--max-old-space-size=250"
   nginx:
     build: nginx/
     volumes:
